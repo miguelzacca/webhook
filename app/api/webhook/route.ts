@@ -29,7 +29,6 @@ export async function POST(request: Request) {
   try {
     const data = await request.json();
     await fs.writeFile(DATA_FILE_PATH, JSON.stringify(data, null, 2));
-    setTimeout(deleteData, 1000 * 60 * 60 * 24)
     return NextResponse.json({ success: true, message: 'Data received' }, { headers: corsHeaders });
   } catch (error: any) {
     console.error('Error writing file:', error);
