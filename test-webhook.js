@@ -4,7 +4,7 @@ fetch('https://datarecv.vercel.app/api/webhook', {
     'Content-Type': 'application/json'
   },
   body: JSON.stringify({
-    message: 'Teste webhook'
+    message: 'Teste webhook 2'
   })
 }).then((res) => res.json()).then((data) => {
   console.log(data)

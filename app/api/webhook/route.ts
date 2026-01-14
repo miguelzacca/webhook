@@ -6,7 +6,9 @@ import os from 'os';
 const DATA_FILE_PATH = path.join(os.tmpdir(), 'latest-data.json');
 
 const corsHeaders = {
-  'Access-Control-Allow-Origin': '*'
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type',
 };
 
 export async function OPTIONS() {
