@@ -1,13 +1,12 @@
 import { NextResponse } from 'next/server';
 import { promises as fs } from 'fs';
 import path from 'path';
+import os from 'os';
 
-const DATA_FILE_PATH = path.join(process.cwd(), 'latest-data.json');
+const DATA_FILE_PATH = path.join(os.tmpdir(), 'latest-data.json');
 
 const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+  'Access-Control-Allow-Origin': '*'
 };
 
 export async function OPTIONS() {
@@ -19,8 +18,9 @@ export async function POST(request: Request) {
     const data = await request.json();
     await fs.writeFile(DATA_FILE_PATH, JSON.stringify(data, null, 2));
     return NextResponse.json({ success: true, message: 'Data received' }, { headers: corsHeaders });
-  } catch (error) {
-    return NextResponse.json({ success: false, error: 'Failed to process data' }, { status: 500, headers: corsHeaders });
+  } catch (error: any) {
+    console.error('Error writing file:', error);
+    return NextResponse.json({ success: false, error: error.message || 'Failed to process data' }, { status: 500, headers: corsHeaders });
   }
 }
 
