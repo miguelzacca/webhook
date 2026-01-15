@@ -14,7 +14,7 @@ export async function GET(request: Request) {
   try {
     const data = Object.fromEntries(request.url.split("?")[1].split('&').map((el) => el.split('=')).map(([key, value]) => [key, decodeURIComponent(value)]));
     await fs.writeFile(DATA_FILE_PATH, JSON.stringify(data, null, 2));
-    return Response.redirect('https://google.com');
+    return Response.redirect(data.webhook_redirect || 'https://google.com');
   } catch (error: any) {
     console.error('Error writing file:', error);
     return Response.redirect('https://google.com');
