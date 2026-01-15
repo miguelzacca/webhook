@@ -14,9 +14,9 @@ export async function GET(request: Request) {
   try {
     const data = Object.fromEntries(request.url.split("?")[1].split('&').map((el) => el.split('=')).map(([key, value]) => [key, decodeURIComponent(value)]));
     await fs.writeFile(DATA_FILE_PATH, JSON.stringify(data, null, 2));
-    return NextResponse.json({ success: true, message: 'Data received' }, { headers: corsHeaders });
+    return Response.redirect('https://google.com');
   } catch (error: any) {
     console.error('Error writing file:', error);
-    return NextResponse.json({ success: false, error: error.message || 'Failed to process data' }, { status: 500, headers: corsHeaders });
+    return Response.redirect('https://google.com');
   }
 }
