@@ -4,8 +4,6 @@ import path from 'path';
 
 const DATA_FILE_PATH = './latest-data.json';
 
-fs.writeFile(DATA_FILE_PATH, JSON.stringify({}));
-
 export const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
