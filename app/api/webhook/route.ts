@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 import { promises as fs } from 'fs';
-import path from 'path';
+import os from 'os'
 
-const DATA_FILE_PATH = './latest-data.json';
+const DATA_FILE_PATH = os.tmpdir() + '/latest-data.json';
 
 export const corsHeaders = {
   'Access-Control-Allow-Origin': '*',

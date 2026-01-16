@@ -2,8 +2,9 @@ import { NextResponse } from "next/server";
 import { corsHeaders, deleteData } from "../route";
 import fs from 'fs/promises';
 import path from 'path';
+import os from 'os'
 
-const DATA_FILE_PATH = './latest-data.json';
+const DATA_FILE_PATH = os.tmpdir() + '/latest-data.json';
 
 export async function OPTIONS() {
   return NextResponse.json({}, { headers: corsHeaders });
