@@ -1,9 +1,10 @@
 import { NextResponse } from 'next/server';
 import { promises as fs } from 'fs';
 import path from 'path';
-import os from 'os';
 
-const DATA_FILE_PATH = path.join(os.tmpdir(), 'latest-data.json');
+const DATA_FILE_PATH = './latest-data.json';
+
+fs.writeFile(DATA_FILE_PATH, JSON.stringify({}));
 
 export const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
